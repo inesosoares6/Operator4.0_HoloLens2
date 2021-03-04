@@ -18,7 +18,6 @@ namespace RosSharp.RosBridgeClient
         public TextMesh timestamp;
         public TextMesh nanoseconds;
         private uint i;
-        //public RelativePosition position;
 
         // Start is called before the first frame update
         void Start()
@@ -41,14 +40,8 @@ namespace RosSharp.RosBridgeClient
                 //message.pose.orientation.y = 0;
                 //message.pose.orientation.z = 0;
                 //message.pose.orientation.z = 0;
-                //Debug.Log(position.relativePosition);
                 message.header.seq = i;
                 message.header.frame_id = "world";
-                //message.header.stamp.secs = uint.Parse(position.seconds);
-                //message.header.stamp.nsecs = uint.Parse(position.nanoseconds);
-                //message.pose.position.x = position.relativePosition.x;
-                //message.pose.position.y = position.relativePosition.y;
-                //message.pose.position.z = position.relativePosition.z;
                 Publish(message);
                 i++;
             }
