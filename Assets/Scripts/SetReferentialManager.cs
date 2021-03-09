@@ -110,8 +110,10 @@ public class SetReferentialManager : MonoBehaviour
                     itemToPosition.transform.position = new Vector3(origin.x, origin.y, origin.z);
 
                     // calculate orientation
-                    lookPosition.x = (float) (Math.Sqrt(Math.Pow(coordXaxis.x,2) + Math.Pow(coordXaxis.z,2)));
-                    lookPosition.z = (float) (Math.Sqrt(Math.Pow(coordZaxis.x,2) + Math.Pow(coordZaxis.z,2)));
+                    //lookPosition.x = (float) (Math.Sqrt(Math.Pow(coordXaxis.x,2) + Math.Pow(coordXaxis.z,2)));
+                    //lookPosition.z = (float) (Math.Sqrt(Math.Pow(coordZaxis.x,2) + Math.Pow(coordZaxis.z,2)));
+                    lookPosition.x = coordZaxis.x;
+                    lookPosition.z = coordZaxis.z;
                     lookPosition.y = (coordXaxis.y + coordZaxis.y) / 2;
 
                     // set referential orientation

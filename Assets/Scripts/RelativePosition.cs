@@ -22,7 +22,7 @@ public class RelativePosition : MonoBehaviour
     void Update()
     {
         long time = new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds();
-        timestamp.text = time.ToString();
+        timestamp.text = (time-56).ToString();
         DateTime offsetDate = new DateTime(1970, 1, 1);
         nanoseconds.text = (DateTime.Now.Ticks * 100 - offsetDate.Ticks * 100 - time * 1000000000).ToString();
 
@@ -41,9 +41,9 @@ public class RelativePosition : MonoBehaviour
     {
         Vector3 distance = position - origin.position;
         Vector3 relativePosition2 = Vector3.zero;
-        relativePosition2.x = -Vector3.Dot(distance, origin.right.normalized);
-        relativePosition2.y = Vector3.Dot(distance, origin.up.normalized);
-        relativePosition2.z = Vector3.Dot(distance, origin.forward.normalized);
+        relativePosition2.x =   Vector3.Dot(distance, origin.right.normalized);
+        relativePosition2.y =   Vector3.Dot(distance, origin.up.normalized);
+        relativePosition2.z = - Vector3.Dot(distance, origin.forward.normalized);
 
         return relativePosition2;
     }
