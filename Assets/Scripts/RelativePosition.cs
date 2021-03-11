@@ -22,11 +22,11 @@ public class RelativePosition : MonoBehaviour
     void Update()
     {
         long time = new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds();
-        timestamp.text = (time-56).ToString();
+        timestamp.text = (time).ToString();
         DateTime offsetDate = new DateTime(1970, 1, 1);
         nanoseconds.text = (DateTime.Now.Ticks * 100 - offsetDate.Ticks * 100 - time * 1000000000).ToString();
 
-        if (HandJointUtils.TryGetJointPose(TrackedHandJoint.IndexTip, Handedness.Right, out MixedRealityPose pose))
+        if (HandJointUtils.TryGetJointPose(TrackedHandJoint.IndexTip, Handedness.Left, out MixedRealityPose pose))
         {
             handAbsolute.text = "Abs: " + pose.Position.x + ", " + pose.Position.y + ", " + pose.Position.z + "\n";
             Vector3 relativePosition = getRelativePosition(cube.transform, pose.Position);
