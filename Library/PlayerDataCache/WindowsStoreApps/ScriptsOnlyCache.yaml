@@ -1,23 +1,17 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
-    - AnchorScript
     - DebugText
-    - RelativePosition
-    - RosSharp.RosBridgeClient.PositionPublisher
-    - RosSharp.RosBridgeClient.RosConnector
-    - SetReferentialManager
-    - UnityMainThreadDispatcher
+    - SpherePosition
     Microsoft.MixedReality.Toolkit.Async.dll:
     - Microsoft.MixedReality.Toolkit.Utilities.AsyncCoroutineRunner
     Microsoft.MixedReality.Toolkit.Editor.Utilities.dll:
     - Microsoft.MixedReality.Toolkit.Utilities.Editor.ProjectPreferences
-    Microsoft.MixedReality.Toolkit.Extensions.HandPhysics.dll:
-    - Microsoft.MixedReality.Toolkit.Extensions.HandPhysics.HandPhysicsServiceProfile
-    - Microsoft.MixedReality.Toolkit.Extensions.HandPhysics.JointKinematicBody
     Microsoft.MixedReality.Toolkit.Providers.WindowsMixedReality.Shared.dll:
     - Microsoft.MixedReality.Toolkit.WindowsMixedReality.WindowsMixedRealityCameraSettingsProfile
     Microsoft.MixedReality.Toolkit.SDK.dll:
+    - Microsoft.MixedReality.Toolkit.Experimental.Dialog.DialogButton
+    - Microsoft.MixedReality.Toolkit.Experimental.Dialog.DialogShell
     - Microsoft.MixedReality.Toolkit.Input.AnimatedCursor
     - Microsoft.MixedReality.Toolkit.Input.FingerCursor
     - Microsoft.MixedReality.Toolkit.Input.GGVPointer
@@ -33,17 +27,16 @@ ScriptsOnlyBuild:
     - Microsoft.MixedReality.Toolkit.PhysicalPressEventRouter
     - Microsoft.MixedReality.Toolkit.Teleport.ParabolicTeleportPointer
     - Microsoft.MixedReality.Toolkit.Teleport.TeleportCursor
-    - Microsoft.MixedReality.Toolkit.UI.ButtonBorder
     - Microsoft.MixedReality.Toolkit.UI.ButtonConfigHelper
     - Microsoft.MixedReality.Toolkit.UI.ButtonIconSet
-    - Microsoft.MixedReality.Toolkit.UI.ButtonSize
-    - Microsoft.MixedReality.Toolkit.UI.ButtonSizeOffset
     - Microsoft.MixedReality.Toolkit.UI.Interactable
-    - Microsoft.MixedReality.Toolkit.UI.ObjectManipulator
-    - Microsoft.MixedReality.Toolkit.UI.PressableButton
     - Microsoft.MixedReality.Toolkit.UI.PressableButtonHoloLens2
     - Microsoft.MixedReality.Toolkit.UI.States
     - Microsoft.MixedReality.Toolkit.UI.Theme
+    - Microsoft.MixedReality.Toolkit.Utilities.GridObjectCollection
+    - Microsoft.MixedReality.Toolkit.Utilities.Solvers.ConstantViewSize
+    - Microsoft.MixedReality.Toolkit.Utilities.Solvers.RadialView
+    - Microsoft.MixedReality.Toolkit.Utilities.Solvers.SolverHandler
     Microsoft.MixedReality.Toolkit.Services.InputAnimation.dll:
     - Microsoft.MixedReality.Toolkit.Input.MixedRealityInputRecordingProfile
     Microsoft.MixedReality.Toolkit.Services.InputSimulation.dll:
@@ -99,7 +92,7 @@ ScriptsOnlyBuild:
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
   sceneClasses:
-    Assets/Scenes/Scene1.unity:
+    Assets/Scenes/Gestures.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -120,8 +113,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 49
       Script: {instanceID: 0}
-    - Class: 54
-      Script: {instanceID: 0}
     - Class: 65
       Script: {instanceID: 0}
     - Class: 74
@@ -137,8 +128,6 @@ ScriptsOnlyBuild:
     - Class: 91
       Script: {instanceID: 0}
     - Class: 95
-      Script: {instanceID: 0}
-    - Class: 102
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
@@ -157,15 +146,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11436}
     - Class: 114
-      Script: {instanceID: 11472}
-    - Class: 114
       Script: {instanceID: 11476}
     - Class: 114
       Script: {instanceID: 11552}
     - Class: 114
       Script: {instanceID: 11564}
-    - Class: 114
-      Script: {instanceID: 11648}
     - Class: 114
       Script: {instanceID: 11712}
     - Class: 114
@@ -182,8 +167,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 12124}
     - Class: 114
       Script: {instanceID: 12156}
-    - Class: 114
-      Script: {instanceID: 12202}
     - Class: 114
       Script: {instanceID: 12204}
     - Class: 114
@@ -211,9 +194,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12726}
     - Class: 114
-      Script: {instanceID: 12868}
-    - Class: 114
       Script: {instanceID: 13032}
+    - Class: 114
+      Script: {instanceID: 13040}
     - Class: 114
       Script: {instanceID: 13044}
     - Class: 114
@@ -221,9 +204,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13196}
     - Class: 114
-      Script: {instanceID: 13242}
-    - Class: 114
-      Script: {instanceID: 13268}
+      Script: {instanceID: 13200}
     - Class: 114
       Script: {instanceID: 13286}
     - Class: 114
@@ -233,11 +214,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13702}
     - Class: 114
+      Script: {instanceID: 13742}
+    - Class: 114
       Script: {instanceID: 13766}
     - Class: 114
       Script: {instanceID: 13812}
-    - Class: 114
-      Script: {instanceID: 13918}
     - Class: 114
       Script: {instanceID: 13944}
     - Class: 114
@@ -251,33 +232,25 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 14086}
     - Class: 114
-      Script: {instanceID: 14146}
-    - Class: 114
       Script: {instanceID: 14166}
-    - Class: 114
-      Script: {instanceID: 14452}
     - Class: 114
       Script: {instanceID: 14532}
     - Class: 114
       Script: {instanceID: 14536}
     - Class: 114
-      Script: {instanceID: 14538}
-    - Class: 114
-      Script: {instanceID: 14602}
-    - Class: 114
-      Script: {instanceID: 14616}
-    - Class: 114
       Script: {instanceID: 14618}
     - Class: 114
       Script: {instanceID: 14724}
-    - Class: 114
-      Script: {instanceID: 14754}
     - Class: 114
       Script: {instanceID: 14776}
     - Class: 114
       Script: {instanceID: 14810}
     - Class: 114
       Script: {instanceID: 14896}
+    - Class: 114
+      Script: {instanceID: 14988}
+    - Class: 114
+      Script: {instanceID: 15032}
     - Class: 114
       Script: {instanceID: 15036}
     - Class: 114
@@ -293,6 +266,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 15430}
     - Class: 114
+      Script: {instanceID: 15446}
+    - Class: 114
       Script: {instanceID: 15494}
     - Class: 114
       Script: {instanceID: 15566}
@@ -300,6 +275,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 15582}
     - Class: 114
       Script: {instanceID: 15588}
+    - Class: 114
+      Script: {instanceID: 24096}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -2565,7 +2542,19 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 9077227df75ec73065f2b25cf7ef6df6
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SpherePosition
+  - hash:
+      serializedVersion: 2
+      Hash: 9077227df75ec73065f2b25cf7ef6df6
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TapListener
   platform: 21
   scenePathNames:
-  - Assets/Scenes/Scene1.unity
+  - Assets/Scenes/Gestures.unity
   playerPath: C:/Users/ineso/Unity Projects/ExtractCoordinates/Builds/WSAPlayer

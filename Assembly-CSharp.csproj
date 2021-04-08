@@ -55,6 +55,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\DialogController.cs" />
      <Compile Include="Assets\MirrorLabs\RosSharp\Scripts\Extensions\StandardHeaderExtensions.cs" />
      <Compile Include="Assets\MirrorLabs\RosSharp\Scripts\Extensions\TransformExtensions.cs" />
      <Compile Include="Assets\MirrorLabs\RosSharp\Scripts\RosBridgeClient\MessageGeneration\ActionMessageGenerator.cs" />
@@ -127,6 +128,8 @@
      <Compile Include="Assets\Scripts\PositionPublisher.cs" />
      <Compile Include="Assets\Scripts\RelativePosition.cs" />
      <Compile Include="Assets\Scripts\SetReferentialManager.cs" />
+     <Compile Include="Assets\SpherePosition.cs" />
+     <Compile Include="Assets\TapListener.cs" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />

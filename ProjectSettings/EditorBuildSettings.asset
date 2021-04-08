@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/Scene1.unity
+  - enabled: 0
+    path: Assets/Scenes/ExtractCoordinates.unity
     guid: 0e24ffa0391bdf44ba87fb0a0d42b5b3
+  - enabled: 1
+    path: Assets/Scenes/Gestures.unity
+    guid: 2b4f294cf596965448c499f14f3de330
   m_configObjects: {}
