@@ -6,12 +6,12 @@ using Microsoft.MixedReality.Toolkit.Utilities;
 using Microsoft.MixedReality.Toolkit.Input;
 using System;
 using System.Reflection;
+using TMPro;
 
 public class SetReferentialManager : MonoBehaviour
 {
     private int _count;
     public GameObject itemToPosition;
-    public GameObject anchorScriptReference;
     private Vector3 origin;
     private Vector3 coordXaxis;
     private Vector3 coordZaxis;
@@ -19,6 +19,9 @@ public class SetReferentialManager : MonoBehaviour
     private bool buttonConfirm = false;
     private Vector3 lookPosition, lookVector;
     private Quaternion lookRotation;
+    public TextMeshPro titleText;
+    public TextMeshPro descriptionText;
+    public TextMeshPro buttonText;
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +54,9 @@ public class SetReferentialManager : MonoBehaviour
         {
             // Define referetial origin
             case 1:
+                titleText.text = "Define Coordinate System";
+                descriptionText.text = "Origin, after you click the button you have 5 seconds to position you finger in the referential origin.";
+                buttonText.text = "Set origin";
                 if (HandJointUtils.TryGetJointPose(TrackedHandJoint.IndexTip, Handedness.Right, out MixedRealityPose pose1) && buttonConfirm)
                 {
                     timer += Time.deltaTime;
@@ -99,8 +105,6 @@ public class SetReferentialManager : MonoBehaviour
 
             // Define orientation and save anchor
             case 4:
-                // delete previous anchor
-                anchorScriptReference.GetComponent<AnchorScript>().DestroyExistingAnchor();
                 if (buttonConfirm)
                 {
                     CurrentCount = 0;
@@ -110,8 +114,6 @@ public class SetReferentialManager : MonoBehaviour
                     itemToPosition.transform.position = new Vector3(origin.x, origin.y, origin.z);
 
                     // calculate orientation
-                    //lookPosition.x = (float) (Math.Sqrt(Math.Pow(coordXaxis.x,2) + Math.Pow(coordXaxis.z,2)));
-                    //lookPosition.z = (float) (Math.Sqrt(Math.Pow(coordZaxis.x,2) + Math.Pow(coordZaxis.z,2)));
                     lookPosition.x = coordZaxis.x;
                     lookPosition.z = coordZaxis.z;
                     lookPosition.y = (coordXaxis.y + coordZaxis.y) / 2;
@@ -120,13 +122,14 @@ public class SetReferentialManager : MonoBehaviour
                     lookVector = itemToPosition.transform.position - lookPosition;
                     lookRotation = Quaternion.LookRotation(lookVector, Vector3.up);
                     itemToPosition.transform.rotation = lookRotation;
-
-                    // save anchor
-                    anchorScriptReference.GetComponent<AnchorScript>().SaveAnchor();
-                    Debug.Log("Anchor saved\n");
                 }
                 break;
         }
+    }
+
+    public void increaseCount()
+    {
+
     }
 
     // Button to define coordinate is checked
