@@ -132,7 +132,6 @@
     <Compile Include="Assets\MirrorLabs\RosSharp\Scripts\Urdf\UrdfComponents\UrdfVisual.cs" />
     <Compile Include="Assets\MirrorLabs\RosSharp\Scripts\Urdf\UrdfComponents\UrdfVisuals.cs" />
     <Compile Include="Assets\Scripts\DebugText.cs" />
-    <Compile Include="Assets\Scripts\DialogController.cs" />
     <Compile Include="Assets\Scripts\DrawLineTest.cs" />
     <Compile Include="Assets\Scripts\PositionPublisher.cs" />
     <Compile Include="Assets\Scripts\RelativePosition.cs" />
@@ -140,7 +139,6 @@
     <Compile Include="Assets\Scripts\SetReferentialManager.cs" />
     <Compile Include="Assets\Scripts\SpherePosition.cs" />
     <Compile Include="Assets\Scripts\TapListener.cs" />
-    <Compile Include="Assets\Scripts\beginGame.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
