@@ -6,7 +6,6 @@ using Microsoft.MixedReality.Toolkit.Utilities;
 using Microsoft.MixedReality.Toolkit.Input;
 using System;
 using System.Reflection;
-using TMPro;
 
 public class SetReferentialManager : MonoBehaviour
 {
@@ -19,9 +18,6 @@ public class SetReferentialManager : MonoBehaviour
     private bool buttonConfirm = false;
     private Vector3 lookPosition, lookVector;
     private Quaternion lookRotation;
-    public TextMeshPro titleText;
-    public TextMeshPro descriptionText;
-    public TextMeshPro buttonText;
 
     // Start is called before the first frame update
     void Start()
@@ -54,9 +50,6 @@ public class SetReferentialManager : MonoBehaviour
         {
             // Define referetial origin
             case 1:
-                titleText.text = "Define Coordinate System";
-                descriptionText.text = "Origin, after you click the button you have 5 seconds to position you finger in the referential origin.";
-                buttonText.text = "Set origin";
                 if (HandJointUtils.TryGetJointPose(TrackedHandJoint.IndexTip, Handedness.Right, out MixedRealityPose pose1) && buttonConfirm)
                 {
                     timer += Time.deltaTime;
@@ -125,11 +118,6 @@ public class SetReferentialManager : MonoBehaviour
                 }
                 break;
         }
-    }
-
-    public void increaseCount()
-    {
-
     }
 
     // Button to define coordinate is checked
