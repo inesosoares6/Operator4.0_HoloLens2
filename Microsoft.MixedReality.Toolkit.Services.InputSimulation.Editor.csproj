@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{159D5E9D-B9D0-9859-2159-F909CF59D77A}</ProjectGuid>
+    <ProjectGuid>{2712B906-0CC8-5EAD-800E-242B1532403C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Microsoft.MixedReality.Toolkit.Services.InputSimulation.Editor</AssemblyName>
@@ -271,22 +271,22 @@
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/16.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json.Bson">
-      <HintPath>C:/Users/ineso/Unity Projects/ExtractCoordinates/Assets/MirrorLabs/RosSharp/Plugins/Newtonsoft.Json.Bson.dll</HintPath>
+      <HintPath>C:/Users/ineso/Unity Projects/Operator4_0/Assets/MirrorLabs/RosSharp/Plugins/Newtonsoft.Json.Bson.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>C:/Users/ineso/Unity Projects/ExtractCoordinates/Assets/MirrorLabs/RosSharp/Plugins/Newtonsoft.Json.dll</HintPath>
+      <HintPath>C:/Users/ineso/Unity Projects/Operator4_0/Assets/MirrorLabs/RosSharp/Plugins/Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RosBridgeClient">
-      <HintPath>C:/Users/ineso/Unity Projects/ExtractCoordinates/Assets/MirrorLabs/RosSharp/Plugins/RosBridgeClient.dll</HintPath>
+      <HintPath>C:/Users/ineso/Unity Projects/Operator4_0/Assets/MirrorLabs/RosSharp/Plugins/RosBridgeClient.dll</HintPath>
     </Reference>
     <Reference Include="Urdf">
-      <HintPath>C:/Users/ineso/Unity Projects/ExtractCoordinates/Assets/MirrorLabs/RosSharp/Plugins/Urdf.dll</HintPath>
+      <HintPath>C:/Users/ineso/Unity Projects/Operator4_0/Assets/MirrorLabs/RosSharp/Plugins/Urdf.dll</HintPath>
     </Reference>
     <Reference Include="websocket-sharp">
-      <HintPath>C:/Users/ineso/Unity Projects/ExtractCoordinates/Assets/MirrorLabs/RosSharp/Plugins/websocket-sharp.dll</HintPath>
+      <HintPath>C:/Users/ineso/Unity Projects/Operator4_0/Assets/MirrorLabs/RosSharp/Plugins/websocket-sharp.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>C:/Users/ineso/Unity Projects/ExtractCoordinates/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
+      <HintPath>C:/Users/ineso/Unity Projects/Operator4_0/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.2f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
@@ -643,41 +643,41 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.2f1/Editor/Data/MonoBleedingEdge/lib/mono/unityscript/Boo.Lang.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:/Users/ineso/Unity Projects/ExtractCoordinates/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/Users/ineso/Unity Projects/Operator4_0/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Users/ineso/Unity Projects/ExtractCoordinates/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/Users/ineso/Unity Projects/Operator4_0/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.TestRunner">
-      <HintPath>C:/Users/ineso/Unity Projects/ExtractCoordinates/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
+      <HintPath>C:/Users/ineso/Unity Projects/Operator4_0/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TestRunner">
-      <HintPath>C:/Users/ineso/Unity Projects/ExtractCoordinates/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
+      <HintPath>C:/Users/ineso/Unity Projects/Operator4_0/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Microsoft.MixedReality.Toolkit.csproj">
-      <Project>{60F0CE1E-F280-E5F9-4213-EB2692B7A1C4}</Project>
+      <Project>{A8F82AEA-3950-AF94-CF80-6EC96351E850}</Project>
       <Name>Microsoft.MixedReality.Toolkit</Name>
     </ProjectReference>
     <ProjectReference Include="Microsoft.MixedReality.Toolkit.Editor.Inspectors.csproj">
-      <Project>{E2E929FA-C640-5674-63F3-93EBA9AD3EC2}</Project>
+      <Project>{B1D8C38B-2F10-7CDA-D152-D5AC9FF3F948}</Project>
       <Name>Microsoft.MixedReality.Toolkit.Editor.Inspectors</Name>
     </ProjectReference>
     <ProjectReference Include="Microsoft.MixedReality.Toolkit.Editor.Utilities.csproj">
-      <Project>{523725F5-DA53-1884-5A27-60EFE53D0072}</Project>
+      <Project>{DA5CAF16-3F0A-1843-F5ED-921C99FE96C0}</Project>
       <Name>Microsoft.MixedReality.Toolkit.Editor.Utilities</Name>
     </ProjectReference>
     <ProjectReference Include="Microsoft.MixedReality.Toolkit.Services.InputAnimation.csproj">
-      <Project>{366FB10B-14D5-3CCC-E764-F2BD35C4DE53}</Project>
+      <Project>{37A39A69-B29B-A289-541A-37B0BAE19A68}</Project>
       <Name>Microsoft.MixedReality.Toolkit.Services.InputAnimation</Name>
     </ProjectReference>
     <ProjectReference Include="Microsoft.MixedReality.Toolkit.Services.InputSystem.csproj">
-      <Project>{48936EC3-D3AC-E7E0-2CFA-C878D86B5F18}</Project>
+      <Project>{355C1BBD-ABE0-0774-B53F-BD5736049B35}</Project>
       <Name>Microsoft.MixedReality.Toolkit.Services.InputSystem</Name>
     </ProjectReference>
     <ProjectReference Include="Microsoft.MixedReality.Toolkit.Services.InputSimulation.csproj">
-      <Project>{19D8789E-87F1-44D7-8E57-56DDB40863B4}</Project>
+      <Project>{6881419F-0C75-1023-C7E2-36315D50C8C1}</Project>
       <Name>Microsoft.MixedReality.Toolkit.Services.InputSimulation</Name>
     </ProjectReference>
   </ItemGroup>

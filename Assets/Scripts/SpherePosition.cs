@@ -18,6 +18,9 @@ public class SpherePosition : MonoBehaviour
     private bool recording = false;
     private LineRenderer lineRenderer;
     private List<Vector3> fingerPositions = new List<Vector3>();
+    public GameObject gizmo;
+    public Vector3 relativePosition;
+    public TextMesh coordinates;
 
     void Start()
     {
@@ -36,6 +39,8 @@ public class SpherePosition : MonoBehaviour
         if (HandJointUtils.TryGetJointPose(TrackedHandJoint.IndexTip, Handedness.Right, out MixedRealityPose pose))
         {
             sphere.transform.position = pose.Position;
+            relativePosition = getRelativePosition(gizmo.transform, pose.Position);
+            coordinates.text = relativePosition.ToString();
             if (recording)
             {
                 UpdateLine(pose.Position);
@@ -70,6 +75,7 @@ public class SpherePosition : MonoBehaviour
             if (count % 2 == 0 && count > 0)
             {
                 showDialog();
+                recognizer.StopCapturingGestures();
             }
             else
             {
@@ -90,6 +96,7 @@ public class SpherePosition : MonoBehaviour
         dialog.SetActive(false);
         change2Green();
         lineRenderer.positionCount = 0;
+        recognizer.StartCapturingGestures();
     }
 
     public void send()
@@ -98,6 +105,7 @@ public class SpherePosition : MonoBehaviour
         dialog.SetActive(false);
         count = 0;
         lineRenderer.positionCount = 0;
+        recognizer.StartCapturingGestures();
     }
 
     private void CreateLine()
@@ -119,5 +127,16 @@ public class SpherePosition : MonoBehaviour
     public void beginGame()
     {
         begin = true;
+    }
+
+    public static Vector3 getRelativePosition(Transform origin, Vector3 position)
+    {
+        Vector3 distance = position - origin.position;
+        Vector3 relativePosition2 = Vector3.zero;
+        relativePosition2.x = - Vector3.Dot(distance, origin.right.normalized);
+        relativePosition2.y = Vector3.Dot(distance, origin.up.normalized);
+        relativePosition2.z = Vector3.Dot(distance, origin.forward.normalized);
+
+        return relativePosition2;
     }
 }

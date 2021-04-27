@@ -23,6 +23,7 @@ public class SetReferentialGestures : MonoBehaviour
     public GameObject sphere;
     public GameObject dialog;
     public int CurrentCount;
+    public SpherePosition spherePosition;
 
 
     // Update is called once per frame
@@ -117,7 +118,7 @@ public class SetReferentialGestures : MonoBehaviour
                 lookPosition.y = (coordXaxis.y + coordZaxis.y) / 2;
 
                 // set referential orientation
-                lookVector = itemToPosition.transform.position - lookPosition;
+                lookVector = lookPosition - itemToPosition.transform.position;
                 lookRotation = Quaternion.LookRotation(lookVector, Vector3.up);
                 itemToPosition.transform.rotation = lookRotation;
 
@@ -126,6 +127,7 @@ public class SetReferentialGestures : MonoBehaviour
             case 8:
                 dialog.SetActive(false);
                 sphere.SetActive(true);
+                spherePosition.beginGame();
                 break;
         }
     }

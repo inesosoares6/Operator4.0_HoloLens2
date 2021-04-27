@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{A78B3733-2BB2-6765-3DCE-E58E558C8573}</ProjectGuid>
+    <ProjectGuid>{1466B7C2-E466-18D1-A806-92D09C4EF127}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Microsoft.MixedReality.Toolkit.Providers.XRSDK.WindowsMixedReality</AssemblyName>
@@ -252,19 +252,19 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.2f1/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json.Bson">
-      <HintPath>C:/Users/ineso/Unity Projects/ExtractCoordinates/Assets/MirrorLabs/RosSharp/Plugins/Newtonsoft.Json.Bson.dll</HintPath>
+      <HintPath>C:/Users/ineso/Unity Projects/Operator4_0/Assets/MirrorLabs/RosSharp/Plugins/Newtonsoft.Json.Bson.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>C:/Users/ineso/Unity Projects/ExtractCoordinates/Assets/MirrorLabs/RosSharp/Plugins/Newtonsoft.Json.dll</HintPath>
+      <HintPath>C:/Users/ineso/Unity Projects/Operator4_0/Assets/MirrorLabs/RosSharp/Plugins/Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RosBridgeClient">
-      <HintPath>C:/Users/ineso/Unity Projects/ExtractCoordinates/Assets/MirrorLabs/RosSharp/Plugins/RosBridgeClient.dll</HintPath>
+      <HintPath>C:/Users/ineso/Unity Projects/Operator4_0/Assets/MirrorLabs/RosSharp/Plugins/RosBridgeClient.dll</HintPath>
     </Reference>
     <Reference Include="Urdf">
-      <HintPath>C:/Users/ineso/Unity Projects/ExtractCoordinates/Assets/MirrorLabs/RosSharp/Plugins/Urdf.dll</HintPath>
+      <HintPath>C:/Users/ineso/Unity Projects/Operator4_0/Assets/MirrorLabs/RosSharp/Plugins/Urdf.dll</HintPath>
     </Reference>
     <Reference Include="websocket-sharp">
-      <HintPath>C:/Users/ineso/Unity Projects/ExtractCoordinates/Assets/MirrorLabs/RosSharp/Plugins/websocket-sharp.dll</HintPath>
+      <HintPath>C:/Users/ineso/Unity Projects/Operator4_0/Assets/MirrorLabs/RosSharp/Plugins/websocket-sharp.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.2f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
@@ -621,23 +621,23 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.2f1/Editor/Data/MonoBleedingEdge/lib/mono/unityscript/Boo.Lang.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:/Users/ineso/Unity Projects/ExtractCoordinates/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/Users/ineso/Unity Projects/Operator4_0/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Users/ineso/Unity Projects/ExtractCoordinates/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/Users/ineso/Unity Projects/Operator4_0/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Microsoft.MixedReality.Toolkit.csproj">
-      <Project>{60F0CE1E-F280-E5F9-4213-EB2692B7A1C4}</Project>
+      <Project>{A8F82AEA-3950-AF94-CF80-6EC96351E850}</Project>
       <Name>Microsoft.MixedReality.Toolkit</Name>
     </ProjectReference>
     <ProjectReference Include="Microsoft.MixedReality.Toolkit.Providers.WindowsMixedReality.Shared.csproj">
-      <Project>{18003E9B-6430-87FC-050F-55AFE84B2A77}</Project>
+      <Project>{93D2FD00-E946-C3AF-C3EA-4D564CCC02C9}</Project>
       <Name>Microsoft.MixedReality.Toolkit.Providers.WindowsMixedReality.Shared</Name>
     </ProjectReference>
     <ProjectReference Include="Microsoft.MixedReality.Toolkit.Providers.XRSDK.csproj">
-      <Project>{AF2DFB67-F74B-8132-D01F-ED64F015BBBF}</Project>
+      <Project>{FAB4E679-0765-63F3-984C-129A27B64295}</Project>
       <Name>Microsoft.MixedReality.Toolkit.Providers.XRSDK</Name>
     </ProjectReference>
   </ItemGroup>
