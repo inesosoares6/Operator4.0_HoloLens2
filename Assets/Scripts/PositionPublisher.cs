@@ -12,12 +12,8 @@ namespace RosSharp.RosBridgeClient
     {
         private Messages.Geometry.PoseStamped message;
         private bool buttonSend = false;
-        public TextMesh xCoord;
-        public TextMesh yCoord;
-        public TextMesh zCoord;
-        public TextMesh timestamp;
-        public TextMesh nanoseconds;
         private uint i;
+        public RelativePosition handPosition;
 
         // Start is called before the first frame update
         void Start()
@@ -31,11 +27,11 @@ namespace RosSharp.RosBridgeClient
         {
             if (buttonSend)
             {
-                message.header.stamp.secs = uint.Parse(timestamp.text);
-                message.header.stamp.nsecs = uint.Parse(nanoseconds.text);
-                message.pose.position.x = float.Parse(xCoord.text);
-                message.pose.position.y = float.Parse(yCoord.text);
-                message.pose.position.z = float.Parse(zCoord.text);
+                message.header.stamp.secs = (uint) handPosition.seconds;
+                message.header.stamp.nsecs = (uint) handPosition.nanoseconds;
+                message.pose.position.x = handPosition.relativePosition.x;
+                message.pose.position.y = handPosition.relativePosition.y;
+                message.pose.position.z = handPosition.relativePosition.z;
                 //message.pose.orientation.x = 0;
                 //message.pose.orientation.y = 0;
                 //message.pose.orientation.z = 0;

@@ -12,28 +12,24 @@ public class RelativePosition : MonoBehaviour
     public GameObject cube;
     public TextMesh handAbsolute;
     public TextMesh handRelative;
-    public TextMesh xCoord;
-    public TextMesh yCoord;
-    public TextMesh zCoord;
     public TextMesh timestamp;
-    public TextMesh nanoseconds;
+    public long seconds;
+    public long nanoseconds;
+    public Vector3 relativePosition;
 
     // Update is called once per frame
     void Update()
     {
-        long time = new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds();
-        timestamp.text = (time).ToString();
+        seconds = new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds();
         DateTime offsetDate = new DateTime(1970, 1, 1);
-        nanoseconds.text = (DateTime.Now.Ticks * 100 - offsetDate.Ticks * 100 - time * 1000000000).ToString();
+        nanoseconds = DateTime.Now.Ticks * 100 - offsetDate.Ticks * 100 - seconds * 1000000000;
+        timestamp.text = seconds.ToString() + "." + nanoseconds.ToString();
 
         if (HandJointUtils.TryGetJointPose(TrackedHandJoint.IndexTip, Handedness.Right, out MixedRealityPose pose))
         {
             handAbsolute.text = "Abs: " + pose.Position.x + ", " + pose.Position.y + ", " + pose.Position.z + "\n";
-            Vector3 relativePosition = getRelativePosition(cube.transform, pose.Position);
+            relativePosition = getRelativePosition(cube.transform, pose.Position);
             handRelative.text = "Rel: " + relativePosition.x + ", " + relativePosition.y + ", " + relativePosition.z + "\n";
-            xCoord.text = relativePosition.x.ToString();
-            yCoord.text = relativePosition.y.ToString();
-            zCoord.text = relativePosition.z.ToString();
         }
     }
 
