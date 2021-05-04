@@ -36,8 +36,6 @@ namespace RosSharp.RosBridgeClient
         private string RosBridgeServer_Prefix = "ws://";
         public string RosBridgeServer_IP = "172.16.48.104";
         public string RosBridgeServer_Port = "9090";
-        public GameObject ConnectedText;
-        public GameObject DisconnectedText;
 
         private ManualResetEvent isConnected = new ManualResetEvent(false);    
 
@@ -59,7 +57,7 @@ namespace RosSharp.RosBridgeClient
 
         private void OnDisable()
         {
-            this.gameObject.GetComponent<PositionPublisher>().enabled = true;
+            this.gameObject.GetComponent<GesturesPublisher>().enabled = true;
             
             if (RosSocket != null)
                 RosSocket.Close();
@@ -87,9 +85,7 @@ namespace RosSharp.RosBridgeClient
         }
         private void RosConnectionSuccess()
         {
-            this.gameObject.GetComponent<PositionPublisher>().enabled = true;
-            ConnectedText.SetActive(true);
-            DisconnectedText.SetActive(false);
+            this.gameObject.GetComponent<GesturesPublisher>().enabled = true;
         }
 
         public void DispatchToMainThread_RosConnectionDisconnected()
@@ -104,8 +100,6 @@ namespace RosSharp.RosBridgeClient
         }
         private void RosConnectionDisconnected()
         {
-            ConnectedText.SetActive(false);
-            DisconnectedText.SetActive(true);
         }
 
 

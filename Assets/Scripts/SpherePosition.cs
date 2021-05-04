@@ -1,12 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.WSA.Input;
-using Microsoft;
 using Microsoft.MixedReality.Toolkit.Utilities;
 using Microsoft.MixedReality.Toolkit.Input;
-using System;
-using Microsoft.MixedReality.Toolkit.UI;
 
 public class SpherePosition : MonoBehaviour
 {
@@ -18,9 +14,11 @@ public class SpherePosition : MonoBehaviour
     private bool recording = false;
     private LineRenderer lineRenderer;
     private List<Vector3> fingerPositions = new List<Vector3>();
+    private List<Vector3> relativeCoordinates = new List<Vector3>();
+    private Vector3 relativePosition;
     public GameObject gizmo;
-    public Vector3 relativePosition;
     public TextMesh coordinates;
+    private RosSharp.RosBridgeClient.GesturesPublisher gesturesPublisher;
 
     void Start()
     {
@@ -29,22 +27,22 @@ public class SpherePosition : MonoBehaviour
         recognizer.SetRecognizableGestures(GestureSettings.Tap);
         recognizer.TappedEvent += GestureRecognizer_TappedEvent;
         recognizer.StartCapturingGestures();
-        //recognizer.StopCapturingGestures();
         count = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (HandJointUtils.TryGetJointPose(TrackedHandJoint.IndexTip, Handedness.Right, out MixedRealityPose pose))
+        if (HandJointUtils.TryGetJointPose(TrackedHandJoint.IndexTip, Handedness.Right, out MixedRealityPose pose) && recording)
         {
+            // recalculate sphere position and the finger relative position
             sphere.transform.position = pose.Position;
             relativePosition = getRelativePosition(gizmo.transform, pose.Position);
             coordinates.text = relativePosition.ToString();
-            if (recording)
-            {
-                UpdateLine(pose.Position);
-            }
+
+            // update lists
+            UpdateLine(pose.Position);
+            relativeCoordinates.Add(relativePosition);
         }
     }
 
@@ -96,6 +94,7 @@ public class SpherePosition : MonoBehaviour
         dialog.SetActive(false);
         change2Green();
         lineRenderer.positionCount = 0;
+        relativeCoordinates.Clear();
         recognizer.StartCapturingGestures();
     }
 
@@ -105,6 +104,8 @@ public class SpherePosition : MonoBehaviour
         dialog.SetActive(false);
         count = 0;
         lineRenderer.positionCount = 0;
+        gesturesPublisher.send2ROS(relativeCoordinates);
+        //relativeCoordinates.Clear();
         recognizer.StartCapturingGestures();
     }
 
@@ -133,7 +134,7 @@ public class SpherePosition : MonoBehaviour
     {
         Vector3 distance = position - origin.position;
         Vector3 relativePosition2 = Vector3.zero;
-        relativePosition2.x = - Vector3.Dot(distance, origin.right.normalized);
+        relativePosition2.x = -Vector3.Dot(distance, origin.right.normalized);
         relativePosition2.y = Vector3.Dot(distance, origin.up.normalized);
         relativePosition2.z = Vector3.Dot(distance, origin.forward.normalized);
 

@@ -1,11 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Microsoft;
+﻿using UnityEngine;
 using Microsoft.MixedReality.Toolkit.Utilities;
 using Microsoft.MixedReality.Toolkit.Input;
-using System;
-using System.Reflection;
 using TMPro;
 
 public class SetReferentialGestures : MonoBehaviour
