@@ -123,6 +123,7 @@ public class SetReferentialGestures : MonoBehaviour
                 dialog.SetActive(false);
                 sphere.SetActive(true);
                 spherePosition.beginGame();
+                increaseCount();
                 break;
         }
     }

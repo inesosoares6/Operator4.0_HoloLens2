@@ -18,7 +18,8 @@ public class SpherePosition : MonoBehaviour
     private Vector3 relativePosition;
     public GameObject gizmo;
     public TextMesh coordinates;
-    private RosSharp.RosBridgeClient.GesturesPublisher gesturesPublisher;
+    public GesturesPublisher gesturesPublisher;
+    public RobotWorkSpace robotWorkSpace;
 
     void Start()
     {
@@ -105,7 +106,7 @@ public class SpherePosition : MonoBehaviour
         count = 0;
         lineRenderer.positionCount = 0;
         gesturesPublisher.send2ROS(relativeCoordinates);
-        //relativeCoordinates.Clear();
+        relativeCoordinates.Clear();
         recognizer.StartCapturingGestures();
     }
 
@@ -128,6 +129,7 @@ public class SpherePosition : MonoBehaviour
     public void beginGame()
     {
         begin = true;
+        robotWorkSpace.drawRobotWorkspace();
     }
 
     public static Vector3 getRelativePosition(Transform origin, Vector3 position)
