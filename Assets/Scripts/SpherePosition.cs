@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.XR.WSA.Input;
 using Microsoft.MixedReality.Toolkit.Utilities;
 using Microsoft.MixedReality.Toolkit.Input;
+using System;
+using TMPro;
 
 public class SpherePosition : MonoBehaviour
 {
@@ -19,7 +21,14 @@ public class SpherePosition : MonoBehaviour
     public GameObject gizmo;
     public TextMesh coordinates;
     public GesturesPublisher gesturesPublisher;
-    public RobotWorkSpace robotWorkSpace;
+    public GameObject workspaceMax;
+    public GameObject workspaceMin;
+    public Material workspaceWarning;
+    public Material workspaceMaterial;
+    public TextMeshPro titleText;
+    public TextMeshPro descriptionText;
+    public TextMeshPro buttonText;
+    public GameObject dialogWarning;
 
     void Start()
     {
@@ -44,6 +53,19 @@ public class SpherePosition : MonoBehaviour
             // update lists
             UpdateLine(pose.Position);
             relativeCoordinates.Add(relativePosition);
+
+            double distance = Math.Sqrt(Math.Pow(relativePosition.x, 2) + Math.Pow(relativePosition.y, 2) + Math.Pow(relativePosition.z, 2));
+            if(distance > 1.7 || relativePosition.x < 0.151 || relativePosition.z < 0.151)
+            {
+                workspaceMax.GetComponent<Renderer>().material = workspaceWarning;
+                workspaceMin.GetComponent<Renderer>().material = workspaceWarning;
+                warning();
+            }
+            else
+            {
+                workspaceMax.GetComponent<Renderer>().material = workspaceMaterial;
+                workspaceMin.GetComponent<Renderer>().material = workspaceMaterial;
+            }
         }
     }
 
@@ -110,6 +132,26 @@ public class SpherePosition : MonoBehaviour
         recognizer.StartCapturingGestures();
     }
 
+    private void warning()
+    {
+        Debug.Log("Warning");
+        dialogWarning.SetActive(true);
+        change2Red();
+        titleText.text = "Warning";
+        descriptionText.text = "You exited the robot workspace area, start recording again and try to stay within the green limit.";
+        buttonText.text = "Start Recording";
+        recognizer.StopCapturingGestures();
+        count = 0;
+        lineRenderer.positionCount = 0;
+        relativeCoordinates.Clear();
+    }
+
+    public void restartRecording()
+    {
+        dialogWarning.SetActive(false);
+        recognizer.StartCapturingGestures();
+    }
+
     private void CreateLine()
     {
         fingerPositions.Clear();
@@ -129,7 +171,7 @@ public class SpherePosition : MonoBehaviour
     public void beginGame()
     {
         begin = true;
-        robotWorkSpace.drawRobotWorkspace();
+        drawRobotWorkspace();
     }
 
     public static Vector3 getRelativePosition(Transform origin, Vector3 position)
@@ -141,5 +183,14 @@ public class SpherePosition : MonoBehaviour
         relativePosition2.z = Vector3.Dot(distance, origin.forward.normalized);
 
         return relativePosition2;
+    }
+
+    public void drawRobotWorkspace()
+    {
+        workspaceMax.SetActive(true);
+        workspaceMax.transform.position = gizmo.transform.position;
+
+        workspaceMin.SetActive(true);
+        workspaceMin.transform.position = gizmo.transform.position;
     }
 }

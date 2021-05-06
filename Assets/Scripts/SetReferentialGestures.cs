@@ -18,7 +18,7 @@ public class SetReferentialGestures : MonoBehaviour
     public GameObject sphere;
     public GameObject dialog;
     public int CurrentCount;
-    public SpherePosition spherePosition;
+    public ManagerScript managerScript;
 
 
     // Update is called once per frame
@@ -122,7 +122,7 @@ public class SetReferentialGestures : MonoBehaviour
             case 8:
                 dialog.SetActive(false);
                 sphere.SetActive(true);
-                spherePosition.beginGame();
+                managerScript.beginGame();
                 increaseCount();
                 break;
         }
