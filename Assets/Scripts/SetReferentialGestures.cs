@@ -7,8 +7,7 @@ public class SetReferentialGestures : MonoBehaviour
 {
     public GameObject itemToPosition;
     private Vector3 origin;
-    private Vector3 coordXaxis;
-    private Vector3 coordZaxis;
+    private Vector3 secondPoint;
     private float timer = 0.0f;
     private Vector3 lookPosition, lookVector;
     private Quaternion lookRotation;
@@ -42,7 +41,7 @@ public class SetReferentialGestures : MonoBehaviour
                     if (timer > 5.0f)
                     {
                         origin = pose1.Position;
-                        Debug.Log("origin:" + origin + " count:" + CurrentCount);
+                        Debug.Log("Origin:" + origin + " count:" + CurrentCount);
                         timer = 0.0f;
                         increaseCount();
                     }
@@ -53,8 +52,8 @@ public class SetReferentialGestures : MonoBehaviour
             case 3:
                 dialog.SetActive(true);
                 titleText.text = "Define Coordinate System";
-                descriptionText.text = "X, after you click the button you have 5 seconds to position you finger in the referential X.";
-                buttonText.text = "Set X";
+                descriptionText.text = "Second point, after you click the button you have 5 seconds to position you finger in the second point to define the orientation.";
+                buttonText.text = "Set point";
                 break;
 
             // Define point in X axis
@@ -65,32 +64,8 @@ public class SetReferentialGestures : MonoBehaviour
                     timer += Time.deltaTime;
                     if (timer > 5.0f)
                     {
-                        coordXaxis = pose2.Position;
-                        Debug.Log("coordXaxis:" + coordXaxis + " count:" + CurrentCount);
-                        timer = 0.0f;
-                        increaseCount();
-                    }
-                }
-                break;
-
-            // Instructions to Z
-            case 5:
-                dialog.SetActive(true);
-                titleText.text = "Define Coordinate System";
-                descriptionText.text = "Z, after you click the button you have 5 seconds to position you finger in the referential Z.";
-                buttonText.text = "Set Z";
-                break;
-
-            // Define point in Z axis
-            case 6:
-                dialog.SetActive(false);
-                if (HandJointUtils.TryGetJointPose(TrackedHandJoint.IndexTip, Handedness.Right, out MixedRealityPose pose3))
-                {
-                    timer += Time.deltaTime;
-                    if (timer > 5.0f)
-                    {
-                        coordZaxis = pose3.Position;
-                        Debug.Log("coordZaxis:" + coordZaxis + " count:" + CurrentCount);
+                        secondPoint = pose2.Position;
+                        Debug.Log("Second Point:" + secondPoint + " count:" + CurrentCount);
                         timer = 0.0f;
                         increaseCount();
                     }
@@ -98,7 +73,7 @@ public class SetReferentialGestures : MonoBehaviour
                 break;
 
             // Define orientation and save anchor
-            case 7:
+            case 5:
                 dialog.SetActive(true);
                 titleText.text = "Define Coordinate System";
                 descriptionText.text = "Start playing";
@@ -107,19 +82,14 @@ public class SetReferentialGestures : MonoBehaviour
                 // define referential origin (coordinations for the cube)
                 itemToPosition.transform.position = new Vector3(origin.x, origin.y, origin.z);
 
-                // calculate orientation
-                lookPosition.x = coordZaxis.x;
-                lookPosition.z = coordZaxis.z;
-                lookPosition.y = (coordXaxis.y + coordZaxis.y) / 2;
-
                 // set referential orientation
-                lookVector = lookPosition - itemToPosition.transform.position;
+                lookVector = secondPoint - itemToPosition.transform.position;
                 lookRotation = Quaternion.LookRotation(lookVector, Vector3.up);
                 itemToPosition.transform.rotation = lookRotation;
 
                 break;
 
-            case 8:
+            case 6:
                 dialog.SetActive(false);
                 sphere.SetActive(true);
                 managerScript.beginGame();
