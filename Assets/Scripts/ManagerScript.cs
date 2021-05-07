@@ -43,33 +43,37 @@ public class ManagerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (HandJointUtils.TryGetJointPose(TrackedHandJoint.IndexTip, Handedness.Right, out MixedRealityPose pose) && recording)
+        if (HandJointUtils.TryGetJointPose(TrackedHandJoint.IndexTip, Handedness.Right, out MixedRealityPose pose))
         {
             // recalculate sphere position and the finger relative position
             sphere.transform.position = pose.Position;
             relativePosition = getRelativePosition(gizmo.transform, pose.Position);
             coordinates.text = relativePosition.ToString();
 
-            // update lists
-            UpdateLine(pose.Position);
-            relativeCoordinates.Add(relativePosition);
+            if (recording)
+            {
+                // update lists
+                UpdateLine(pose.Position);
+                relativeCoordinates.Add(relativePosition);
 
-            double distance = Math.Sqrt(Math.Pow(relativePosition.x, 2) + Math.Pow(relativePosition.y, 2) + Math.Pow(relativePosition.z, 2));
-            if (distance > 1.7 || relativePosition.x < 0.151 || relativePosition.z < 0.151)
-            {
-                workspaceMax.GetComponent<Renderer>().material = workspaceWarning;
-                workspaceMin.GetComponent<Renderer>().material = workspaceWarning;
-                warning();
-            }
-            else
-            {
-                workspaceMax.GetComponent<Renderer>().material = workspaceMaterial;
-                workspaceMin.GetComponent<Renderer>().material = workspaceMaterial;
+                double distanceSphere = Math.Sqrt(Math.Pow(relativePosition.x, 2) + Math.Pow(relativePosition.y, 2) + Math.Pow(relativePosition.z, 2));
+                double distanceCylinder = Math.Sqrt(Math.Pow(relativePosition.x, 2) + Math.Pow(relativePosition.z, 2));
+                if (distanceSphere > 1.7/2 || distanceCylinder < 0.151/2)
+                {
+                    workspaceMax.GetComponent<Renderer>().material = workspaceWarning;
+                    workspaceMin.GetComponent<Renderer>().material = workspaceWarning;
+                    warning();
+                }
+                else
+                {
+                    workspaceMax.GetComponent<Renderer>().material = workspaceMaterial;
+                    workspaceMin.GetComponent<Renderer>().material = workspaceMaterial;
+                }
             }
         }
     }
 
-    void change2Green() // RECORDING
+    public void change2Green() // RECORDING
     {
         sphere.GetComponent<Renderer>().material.color = Color.green;
         recording = true;
@@ -115,7 +119,7 @@ public class ManagerScript : MonoBehaviour
     {
         Debug.Log("REPEAT");
         dialog.SetActive(false);
-        change2Green();
+        count = 0;
         lineRenderer.positionCount = 0;
         relativeCoordinates.Clear();
         recognizer.StartCapturingGestures();
@@ -141,14 +145,14 @@ public class ManagerScript : MonoBehaviour
         descriptionText.text = "You exited the robot workspace area, start recording again and try to stay within the green limit.";
         buttonText.text = "Start Recording";
         recognizer.StopCapturingGestures();
-        count = 0;
-        lineRenderer.positionCount = 0;
-        relativeCoordinates.Clear();
     }
 
     public void restartRecording()
     {
         dialogWarning.SetActive(false);
+        count = 0;
+        lineRenderer.positionCount = 0;
+        relativeCoordinates.Clear();
         recognizer.StartCapturingGestures();
     }
 
