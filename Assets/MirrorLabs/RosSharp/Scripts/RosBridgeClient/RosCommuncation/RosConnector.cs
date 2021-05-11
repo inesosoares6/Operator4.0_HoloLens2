@@ -121,7 +121,10 @@ namespace RosSharp.RosBridgeClient
             RosSocket = ConnectToRos(Protocol, RosBridgeServerUrl, OnConnected, OnClosed,Serializer);
 
             if (!isConnected.WaitOne(Timeout * 1000))
-                Debug.LogWarning("Failed to connect to RosBridge at: " + RosBridgeServerUrl);            
+            {
+                Debug.LogWarning("Failed to connect to RosBridge at: " + RosBridgeServerUrl);
+                Debug.Log("Failed to connect to ROS");
+            }
         }
         
         public static RosSocket ConnectToRos(Protocols protocolType, string serverUrl, EventHandler onConnected = null, EventHandler onClosed = null,RosSocket.SerializerEnum serializer=RosSocket.SerializerEnum.JSON)
@@ -164,6 +167,7 @@ namespace RosSharp.RosBridgeClient
         {
             isConnected.Set();            
             Debug.Log("Connected to RosBridge: " + RosBridgeServerUrl);
+            Debug.Log("Connected to ROS");
 
             try
             {

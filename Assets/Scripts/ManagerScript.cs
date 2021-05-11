@@ -10,7 +10,7 @@ public class ManagerScript : MonoBehaviour
 {
     private bool begin = false;
     public GameObject sphere;
-    public GameObject dialog;
+    public GameObject dialogConfirmation;
     private GestureRecognizer recognizer;
     private int count;
     private bool recording = false;
@@ -29,6 +29,11 @@ public class ManagerScript : MonoBehaviour
     public TextMeshPro descriptionText;
     public TextMeshPro buttonText;
     public GameObject dialogWarning;
+    private string robot = "";
+    public GameObject dialogWelcome;
+    public GameObject dialogReferential;
+    private float max_WS;
+    private float min_WS;
 
     void Start()
     {
@@ -58,7 +63,8 @@ public class ManagerScript : MonoBehaviour
 
                 double distanceSphere = Math.Sqrt(Math.Pow(relativePosition.x, 2) + Math.Pow(relativePosition.y, 2) + Math.Pow(relativePosition.z, 2));
                 double distanceCylinder = Math.Sqrt(Math.Pow(relativePosition.x, 2) + Math.Pow(relativePosition.z, 2));
-                if (distanceSphere > 1.7/2 || distanceCylinder < 0.151/2)
+                
+                if (distanceSphere > max_WS / 2 || distanceCylinder < min_WS / 2)
                 {
                     workspaceMax.GetComponent<Renderer>().material = workspaceWarning;
                     workspaceMin.GetComponent<Renderer>().material = workspaceWarning;
@@ -111,14 +117,14 @@ public class ManagerScript : MonoBehaviour
 
     public void showDialog()
     {
-        dialog.SetActive(true);
+        dialogConfirmation.SetActive(true);
         change2Red();
     }
 
     public void repeat()
     {
         Debug.Log("REPEAT");
-        dialog.SetActive(false);
+        dialogConfirmation.SetActive(false);
         count = 0;
         lineRenderer.positionCount = 0;
         relativeCoordinates.Clear();
@@ -128,7 +134,7 @@ public class ManagerScript : MonoBehaviour
     public void send()
     {
         Debug.Log("SEND");
-        dialog.SetActive(false);
+        dialogConfirmation.SetActive(false);
         count = 0;
         lineRenderer.positionCount = 0;
         gesturesPublisher.send2ROS(relativeCoordinates);
@@ -175,7 +181,17 @@ public class ManagerScript : MonoBehaviour
     public void beginGame()
     {
         begin = true;
-        drawRobotWorkspace();
+        if (robot == "UR5") // UR5 recommended workspace
+        {
+            max_WS = 1.700f;
+            min_WS = 0.151f;
+            drawRobotWorkspace(max_WS, min_WS, 0.8105f);
+        } 
+        else if(robot == "ABB")
+        {
+            //drawRobotWorkspace(1.700f, 0.151f, 0.8105f);
+        }
+        
     }
 
     public static Vector3 getRelativePosition(Transform origin, Vector3 position)
@@ -189,12 +205,22 @@ public class ManagerScript : MonoBehaviour
         return relativePosition2;
     }
 
-    public void drawRobotWorkspace()
+    public void drawRobotWorkspace(float max, float min, float height)
     {
         workspaceMax.SetActive(true);
         workspaceMax.transform.position = gizmo.transform.position;
+        workspaceMax.transform.localScale = new Vector3(max, max, max);
 
         workspaceMin.SetActive(true);
         workspaceMin.transform.position = gizmo.transform.position;
+        workspaceMin.transform.localScale = new Vector3(min, height, min);
+    }
+
+    public void robotName(string name)
+    {
+        robot = name;
+        Debug.Log(robot);
+        dialogWelcome.SetActive(false);
+        dialogReferential.SetActive(true);
     }
 }

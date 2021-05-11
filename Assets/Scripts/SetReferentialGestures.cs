@@ -9,15 +9,15 @@ public class SetReferentialGestures : MonoBehaviour
     private Vector3 origin;
     private Vector3 secondPoint;
     private float timer = 0.0f;
-    private Vector3 lookPosition, lookVector;
+    private Vector3 lookVector;
     private Quaternion lookRotation;
-    public TextMeshPro titleText;
     public TextMeshPro descriptionText;
     public TextMeshPro buttonText;
     public GameObject sphere;
     public GameObject dialog;
-    public int CurrentCount;
+    private int CurrentCount;
     public ManagerScript managerScript;
+    public GameObject dialogIntructions;
 
 
     // Update is called once per frame
@@ -25,15 +25,8 @@ public class SetReferentialGestures : MonoBehaviour
     {
         switch (CurrentCount)
         {
-            // Instructions to origin
-            case 1:
-                titleText.text = "Define Coordinate System";
-                descriptionText.text = "Origin, after you click the button you have 5 seconds to position you finger in the referential origin.";
-                buttonText.text = "Set origin";
-                break;
-
             // Define referetial origin
-            case 2:
+            case 1:
                 dialog.SetActive(false);
                 if (HandJointUtils.TryGetJointPose(TrackedHandJoint.IndexTip, Handedness.Right, out MixedRealityPose pose1))
                 {
@@ -49,15 +42,14 @@ public class SetReferentialGestures : MonoBehaviour
                 break;
 
             // Instructions to X
-            case 3:
+            case 2:
                 dialog.SetActive(true);
-                titleText.text = "Define Coordinate System";
                 descriptionText.text = "Second point, after you click the button you have 5 seconds to position you finger in the second point to define the orientation.";
                 buttonText.text = "Set point";
                 break;
 
             // Define point in X axis
-            case 4:
+            case 3:
                 dialog.SetActive(false);
                 if (HandJointUtils.TryGetJointPose(TrackedHandJoint.IndexTip, Handedness.Right, out MixedRealityPose pose2))
                 {
@@ -73,11 +65,8 @@ public class SetReferentialGestures : MonoBehaviour
                 break;
 
             // Define orientation and save anchor
-            case 5:
-                dialog.SetActive(true);
-                titleText.text = "Define Coordinate System";
-                descriptionText.text = "Start playing";
-                buttonText.text = "Start Playing";
+            case 4:
+                dialogIntructions.SetActive(true);
 
                 // define referential origin (coordinations for the cube)
                 itemToPosition.transform.position = new Vector3(origin.x, origin.y, origin.z);
@@ -89,8 +78,8 @@ public class SetReferentialGestures : MonoBehaviour
 
                 break;
 
-            case 6:
-                dialog.SetActive(false);
+            case 5:
+                dialogIntructions.SetActive(false);
                 sphere.SetActive(true);
                 managerScript.beginGame();
                 increaseCount();
@@ -102,5 +91,6 @@ public class SetReferentialGestures : MonoBehaviour
     {
         CurrentCount = CurrentCount + 1;
     }
+
 }
 
