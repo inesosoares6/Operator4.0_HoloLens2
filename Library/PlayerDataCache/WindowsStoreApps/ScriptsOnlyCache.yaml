@@ -131,6 +131,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 83
       Script: {instanceID: 0}
+    - Class: 89
+      Script: {instanceID: 0}
     - Class: 90
       Script: {instanceID: 0}
     - Class: 91
@@ -324,6 +326,8 @@ ScriptsOnlyBuild:
     - Class: 222
       Script: {instanceID: 0}
     - Class: 224
+      Script: {instanceID: 0}
+    - Class: 258
       Script: {instanceID: 0}
   scriptHashData:
   - hash:
@@ -1648,7 +1652,7 @@ ScriptsOnlyBuild:
     className: ConstantViewSize
   - hash:
       serializedVersion: 2
-      Hash: f308dfcc47f91e8ee795af4a95a41494
+      Hash: 8097c35f8fb2108cf1aba5707cf55999
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SetReferentialGestures
@@ -2434,7 +2438,7 @@ ScriptsOnlyBuild:
     className: TestRunCallbackListener
   - hash:
       serializedVersion: 2
-      Hash: 7b97fc192f43d1fbcafbf5ea7043a7e4
+      Hash: 5b60c5bdc7ce88b658d3e745adecba2a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ManagerScript
