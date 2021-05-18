@@ -21,8 +21,8 @@ public class ManagerScript : MonoBehaviour
     public GameObject gizmo;
     public TextMesh coordinates;
     public GesturesPublisher gesturesPublisher;
-    public GameObject workspaceMax;
-    public GameObject workspaceMin;
+    private GameObject workspaceMax;
+    private GameObject workspaceMin;
     public Material workspaceWarning;
     public Material workspaceMaterial;
     public TextMeshPro titleText;
@@ -63,18 +63,35 @@ public class ManagerScript : MonoBehaviour
 
                 double distanceSphere = Math.Sqrt(Math.Pow(relativePosition.x, 2) + Math.Pow(relativePosition.y, 2) + Math.Pow(relativePosition.z, 2));
                 double distanceCylinder = Math.Sqrt(Math.Pow(relativePosition.x, 2) + Math.Pow(relativePosition.z, 2));
-                
-                if (distanceSphere > max_WS / 2 || distanceCylinder < min_WS / 2)
+
+                if (robot == "UR5")
                 {
-                    workspaceMax.GetComponent<Renderer>().material = workspaceWarning;
-                    workspaceMin.GetComponent<Renderer>().material = workspaceWarning;
-                    warning();
-                }
-                else
+                    if (distanceSphere > max_WS / 2 || distanceCylinder < min_WS / 2)
+                    {
+                        workspaceMax.GetComponent<Renderer>().material = workspaceWarning;
+                        workspaceMin.GetComponent<Renderer>().material = workspaceWarning;
+                        warning();
+                    }
+                    else
+                    {
+                        workspaceMax.GetComponent<Renderer>().material = workspaceMaterial;
+                        workspaceMin.GetComponent<Renderer>().material = workspaceMaterial;
+                    }
+                } 
+                else if(robot == "ABB")
                 {
-                    workspaceMax.GetComponent<Renderer>().material = workspaceMaterial;
-                    workspaceMin.GetComponent<Renderer>().material = workspaceMaterial;
-                }
+                    if (distanceSphere > max_WS / 2 || distanceSphere < min_WS / 2)
+                    {
+                        workspaceMax.GetComponent<Renderer>().material = workspaceWarning;
+                        workspaceMin.GetComponent<Renderer>().material = workspaceWarning;
+                        warning();
+                    }
+                    else
+                    {
+                        workspaceMax.GetComponent<Renderer>().material = workspaceMaterial;
+                        workspaceMin.GetComponent<Renderer>().material = workspaceMaterial;
+                    }
+                } 
             }
         }
     }
@@ -160,6 +177,8 @@ public class ManagerScript : MonoBehaviour
         lineRenderer.positionCount = 0;
         relativeCoordinates.Clear();
         recognizer.StartCapturingGestures();
+        workspaceMax.GetComponent<Renderer>().material = workspaceMaterial;
+        workspaceMin.GetComponent<Renderer>().material = workspaceMaterial;
     }
 
     private void CreateLine()
@@ -185,13 +204,15 @@ public class ManagerScript : MonoBehaviour
         {
             max_WS = 1.700f;
             min_WS = 0.151f;
-            drawRobotWorkspace(max_WS, min_WS, 0.8105f);
+            drawUR5Workspace(max_WS, min_WS, 0.8105f);
         } 
         else if(robot == "ABB")
         {
-            //drawRobotWorkspace(1.700f, 0.151f, 0.8105f);
+            max_WS = 2.900f;
+            min_WS = 0.940f;
+            drawABBWorkspace(max_WS, min_WS);
         }
-        
+
     }
 
     public static Vector3 getRelativePosition(Transform origin, Vector3 position)
@@ -205,15 +226,32 @@ public class ManagerScript : MonoBehaviour
         return relativePosition2;
     }
 
-    public void drawRobotWorkspace(float max, float min, float height)
+    public void drawUR5Workspace(float max, float min, float height)
     {
-        workspaceMax.SetActive(true);
+        workspaceMax = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         workspaceMax.transform.position = gizmo.transform.position;
         workspaceMax.transform.localScale = new Vector3(max, max, max);
 
-        workspaceMin.SetActive(true);
+        workspaceMin = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
         workspaceMin.transform.position = gizmo.transform.position;
         workspaceMin.transform.localScale = new Vector3(min, height, min);
+
+        workspaceMax.GetComponent<Renderer>().material = workspaceMaterial;
+        workspaceMin.GetComponent<Renderer>().material = workspaceMaterial;
+    }
+
+    public void drawABBWorkspace(float max, float min)
+    {
+        workspaceMax = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        workspaceMax.transform.position = gizmo.transform.position;
+        workspaceMax.transform.localScale = new Vector3(max, max, max);
+
+        workspaceMin = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        workspaceMin.transform.position = gizmo.transform.position;
+        workspaceMin.transform.localScale = new Vector3(min, min, min);
+
+        workspaceMax.GetComponent<Renderer>().material = workspaceMaterial;
+        workspaceMin.GetComponent<Renderer>().material = workspaceMaterial;
     }
 
     public void robotName(string name)

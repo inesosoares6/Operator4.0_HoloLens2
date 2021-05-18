@@ -69,6 +69,7 @@ public class SetReferentialGestures : MonoBehaviour
                 dialogIntructions.SetActive(true);
 
                 // define referential origin (coordinations for the cube)
+                itemToPosition.SetActive(true);
                 itemToPosition.transform.position = new Vector3(origin.x, origin.y, origin.z);
 
                 // set referential orientation
