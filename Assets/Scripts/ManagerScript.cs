@@ -15,11 +15,9 @@ public class ManagerScript : MonoBehaviour
     private int count;
     private bool recording = false;
     private LineRenderer lineRenderer;
-    private List<Vector3> fingerPositions = new List<Vector3>();
     private List<Vector3> relativeCoordinates = new List<Vector3>();
     private Vector3 relativePosition;
     public GameObject gizmo;
-    public TextMesh coordinates;
     public GesturesPublisher gesturesPublisher;
     private GameObject workspaceMax;
     private GameObject workspaceMin;
@@ -53,7 +51,6 @@ public class ManagerScript : MonoBehaviour
             // recalculate sphere position and the finger relative position
             sphere.transform.position = pose.Position;
             relativePosition = getRelativePosition(gizmo.transform, pose.Position);
-            coordinates.text = relativePosition.ToString();
 
             if (recording)
             {
@@ -68,28 +65,24 @@ public class ManagerScript : MonoBehaviour
                 {
                     if (distanceSphere > max_WS / 2 || distanceCylinder < min_WS / 2)
                     {
-                        workspaceMax.GetComponent<Renderer>().material = workspaceWarning;
-                        workspaceMin.GetComponent<Renderer>().material = workspaceWarning;
+                        changeMaterial(workspaceWarning);
                         warning();
                     }
                     else
                     {
-                        workspaceMax.GetComponent<Renderer>().material = workspaceMaterial;
-                        workspaceMin.GetComponent<Renderer>().material = workspaceMaterial;
+                        changeMaterial(workspaceMaterial);
                     }
                 } 
                 else if(robot == "ABB")
                 {
                     if (distanceSphere > max_WS / 2 || distanceSphere < min_WS / 2)
                     {
-                        workspaceMax.GetComponent<Renderer>().material = workspaceWarning;
-                        workspaceMin.GetComponent<Renderer>().material = workspaceWarning;
+                        changeMaterial(workspaceWarning);
                         warning();
                     }
                     else
                     {
-                        workspaceMax.GetComponent<Renderer>().material = workspaceMaterial;
-                        workspaceMin.GetComponent<Renderer>().material = workspaceMaterial;
+                        changeMaterial(workspaceMaterial);
                     }
                 } 
             }
@@ -183,14 +176,12 @@ public class ManagerScript : MonoBehaviour
 
     private void CreateLine()
     {
-        fingerPositions.Clear();
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.positionCount = 0;
     }
 
     private void UpdateLine(Vector3 newFingerPose)
     {
-        fingerPositions.Add(newFingerPose);
         lineRenderer.startWidth = 0.01f;
         lineRenderer.endWidth = 0.01f;
         lineRenderer.positionCount++;
@@ -236,8 +227,7 @@ public class ManagerScript : MonoBehaviour
         workspaceMin.transform.position = gizmo.transform.position;
         workspaceMin.transform.localScale = new Vector3(min, height, min);
 
-        workspaceMax.GetComponent<Renderer>().material = workspaceMaterial;
-        workspaceMin.GetComponent<Renderer>().material = workspaceMaterial;
+        changeMaterial(workspaceMaterial);
     }
 
     public void drawABBWorkspace(float max, float min)
@@ -250,8 +240,13 @@ public class ManagerScript : MonoBehaviour
         workspaceMin.transform.position = gizmo.transform.position;
         workspaceMin.transform.localScale = new Vector3(min, min, min);
 
-        workspaceMax.GetComponent<Renderer>().material = workspaceMaterial;
-        workspaceMin.GetComponent<Renderer>().material = workspaceMaterial;
+        changeMaterial(workspaceMaterial);
+    }
+
+    private void changeMaterial(Material material2change)
+    {
+        workspaceMax.GetComponent<Renderer>().material = material2change;
+        workspaceMin.GetComponent<Renderer>().material = material2change;
     }
 
     public void robotName(string name)
