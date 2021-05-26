@@ -74,7 +74,7 @@ public class SetReferentialGestures : MonoBehaviour
 
                 // set referential orientation
                 lookVector = secondPoint - itemToPosition.transform.position;
-                lookRotation = Quaternion.LookRotation(lookVector, Vector3.up);
+                lookRotation = Quaternion.LookRotation(lookVector, Vector3.right);
                 itemToPosition.transform.rotation = lookRotation;
 
                 break;
