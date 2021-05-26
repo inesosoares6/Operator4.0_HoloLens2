@@ -19,6 +19,7 @@ public class ManagerScript : MonoBehaviour
     private Vector3 relativePosition;
     public GameObject gizmo;
     public GesturesPublisher gesturesPublisher;
+    public StatusPublisher statusPublisher;
     private GameObject workspaceMax;
     private GameObject workspaceMin;
     public Material workspaceWarning;
@@ -30,8 +31,10 @@ public class ManagerScript : MonoBehaviour
     private string robot = "";
     public GameObject dialogWelcome;
     public GameObject dialogReferential;
+    public GameObject dialogStartRobot;
     private float max_WS;
     private float min_WS;
+    public TextMesh coordinates;
 
     void Start()
     {
@@ -51,6 +54,7 @@ public class ManagerScript : MonoBehaviour
             // recalculate sphere position and the finger relative position
             sphere.transform.position = pose.Position;
             relativePosition = getRelativePosition(gizmo.transform, pose.Position);
+            coordinates.text = relativePosition.ToString();
 
             if (recording)
             {
@@ -145,10 +149,19 @@ public class ManagerScript : MonoBehaviour
     {
         Debug.Log("SEND");
         dialogConfirmation.SetActive(false);
+        dialogStartRobot.SetActive(true);
         count = 0;
         lineRenderer.positionCount = 0;
+        statusPublisher.status2ROS("start_doc");
         gesturesPublisher.send2ROS(relativeCoordinates);
         relativeCoordinates.Clear();
+    }
+
+    public void startRobot()
+    {
+        Debug.Log("START_ROBOT");
+        statusPublisher.status2ROS("send_doc");
+        dialogStartRobot.SetActive(false);
         recognizer.StartCapturingGestures();
     }
 

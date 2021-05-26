@@ -57,7 +57,8 @@ namespace RosSharp.RosBridgeClient
         private void OnDisable()
         {
             this.gameObject.GetComponent<GesturesPublisher>().enabled = true;
-            
+            this.gameObject.GetComponent<StatusPublisher>().enabled = true;
+
             if (RosSocket != null)
                 RosSocket.Close();
 
@@ -85,6 +86,7 @@ namespace RosSharp.RosBridgeClient
         private void RosConnectionSuccess()
         {
             this.gameObject.GetComponent<GesturesPublisher>().enabled = true;
+            this.gameObject.GetComponent<StatusPublisher>().enabled = true;
         }
 
         public void DispatchToMainThread_RosConnectionDisconnected()

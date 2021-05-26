@@ -2436,7 +2436,7 @@ ScriptsOnlyBuild:
     className: TestRunCallbackListener
   - hash:
       serializedVersion: 2
-      Hash: 210a420d61c935381654ce684f5893e1
+      Hash: a300cc084d72f837357b2501d1de45d4
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ManagerScript
