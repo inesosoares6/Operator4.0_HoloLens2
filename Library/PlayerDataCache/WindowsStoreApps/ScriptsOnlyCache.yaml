@@ -10,26 +10,8 @@ ScriptsOnlyBuild:
     - UnityMainThreadDispatcher
     Microsoft.MixedReality.Toolkit.Async.dll:
     - Microsoft.MixedReality.Toolkit.Utilities.AsyncCoroutineRunner
-    Microsoft.MixedReality.Toolkit.Editor.Inspectors.dll:
-    - Microsoft.MixedReality.Toolkit.Editor.MixedRealityCameraProfileInspector
-    - Microsoft.MixedReality.Toolkit.Editor.MixedRealityToolkitConfigurationProfileInspector
-    - Microsoft.MixedReality.Toolkit.SpatialAwareness.Editor.MixedRealitySpatialAwarenessSystemProfileInspector
     Microsoft.MixedReality.Toolkit.Editor.Utilities.dll:
     - Microsoft.MixedReality.Toolkit.Utilities.Editor.ProjectPreferences
-    Microsoft.MixedReality.Toolkit.Extensions.HandPhysics.dll:
-    - Microsoft.MixedReality.Toolkit.Extensions.HandPhysics.HandPhysicsServiceProfile
-    - Microsoft.MixedReality.Toolkit.Extensions.HandPhysics.JointKinematicBody
-    Microsoft.MixedReality.Toolkit.Extensions.SceneTransitionService.dll:
-    - Microsoft.MixedReality.Toolkit.Extensions.SceneTransitions.SceneTransitionServiceProfile
-    Microsoft.MixedReality.Toolkit.Extensions.Tracking.dll:
-    - Microsoft.MixedReality.Toolkit.Extensions.Tracking.BasicLostTrackingVisual
-    - Microsoft.MixedReality.Toolkit.Extensions.Tracking.LostTrackingServiceProfile
-    Microsoft.MixedReality.Toolkit.Providers.LeapMotion.dll:
-    - Microsoft.MixedReality.Toolkit.LeapMotion.Input.LeapMotionDeviceManagerProfile
-    Microsoft.MixedReality.Toolkit.Providers.ObjectMeshObserver.dll:
-    - Microsoft.MixedReality.Toolkit.SpatialObjectMeshObserver.SpatialObjectMeshObserverProfile
-    Microsoft.MixedReality.Toolkit.Providers.UnityAR.dll:
-    - Microsoft.MixedReality.Toolkit.Experimental.UnityAR.UnityARCameraSettingsProfile
     Microsoft.MixedReality.Toolkit.Providers.WindowsMixedReality.Shared.dll:
     - Microsoft.MixedReality.Toolkit.WindowsMixedReality.WindowsMixedRealityCameraSettingsProfile
     Microsoft.MixedReality.Toolkit.SDK.dll:
@@ -58,7 +40,6 @@ ScriptsOnlyBuild:
     - Microsoft.MixedReality.Toolkit.UI.Interactable
     - Microsoft.MixedReality.Toolkit.UI.PressableButton
     - Microsoft.MixedReality.Toolkit.UI.PressableButtonHoloLens2
-    - Microsoft.MixedReality.Toolkit.UI.ProgressIndicatorLoadingBar
     - Microsoft.MixedReality.Toolkit.UI.States
     - Microsoft.MixedReality.Toolkit.UI.Theme
     - Microsoft.MixedReality.Toolkit.Utilities.GridObjectCollection
@@ -81,13 +62,11 @@ ScriptsOnlyBuild:
     - Microsoft.MixedReality.Toolkit.Input.BaseHandVisualizer
     - Microsoft.MixedReality.Toolkit.Input.MixedRealityControllerMappingProfile
     - Microsoft.MixedReality.Toolkit.Input.MixedRealityControllerVisualizationProfile
-    - Microsoft.MixedReality.Toolkit.Input.MixedRealityEyeTrackingProfile
     - Microsoft.MixedReality.Toolkit.Input.MixedRealityGesturesProfile
     - Microsoft.MixedReality.Toolkit.Input.MixedRealityHandTrackingProfile
     - Microsoft.MixedReality.Toolkit.Input.MixedRealityInputActionRulesProfile
     - Microsoft.MixedReality.Toolkit.Input.MixedRealityInputActionsProfile
     - Microsoft.MixedReality.Toolkit.Input.MixedRealityInputSystemProfile
-    - Microsoft.MixedReality.Toolkit.Input.MixedRealityMouseInputProfile
     - Microsoft.MixedReality.Toolkit.Input.MixedRealityPointerProfile
     - Microsoft.MixedReality.Toolkit.Input.MixedRealitySpeechCommandsProfile
     - Microsoft.MixedReality.Toolkit.MixedRealityCameraProfile
