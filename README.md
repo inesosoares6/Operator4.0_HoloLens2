@@ -9,7 +9,7 @@ In other to successfully record the movement which will be reproduced by the rob
 - Finally, when the movement is finalized, the user can confirm that the movement was correctly recorded and it is sent to the robot. Otherwise, the movement is erased and the user has to start the recording again. The tool used to make the connection between HoloLens 2 and ROS was ROS\#.
 
 
-![app_overview](https://user-images.githubusercontent.com/76999213/120467259-e686bd00-c397-11eb-8175-8df0bba689a0.png)
+![app_overview](https://user-images.githubusercontent.com/76999213/120483269-dbd52380-c3a9-11eb-8754-3e4e455987f1.png)
 
 ## Author
 Inês de Oliveira Soares (ines.o.soares@inesctec.pt | up201606615@up.pt)
